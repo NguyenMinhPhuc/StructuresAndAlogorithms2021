@@ -1,2 +1,2 @@
-# StructuresAndAlogorithms2021
-Responsitory lưu trữ nội dung môn học cấu trúc dữ liệu và giải thuật
+# Learning Project 2021 - Structures and Algorithms {SAA}
+ 
