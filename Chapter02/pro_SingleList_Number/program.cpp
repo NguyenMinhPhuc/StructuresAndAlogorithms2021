@@ -10,6 +10,9 @@ Bước 04: Xây dựng hành động cho Single List.
  + Viết phương thức in danh sách ra màn hình
 */
 #include "iostream"
+#include "string"
+#include "math.h"
+#include <iomanip>
 
 using namespace std;
 //Cấu trúc node
@@ -62,6 +65,53 @@ void Addfirst(LIST& list, NODE* new_ele)
 		list.first = new_ele;
 	}
 }
+void AddLast(LIST& list, NODE* new_ele)
+{
+	if (list.first == NULL)
+	{
+		list.first = new_ele;//1
+		list.last = list.first;//2
+	}
+	else
+	{
+		list.last->link = new_ele;//3
+		list.last = new_ele;
+	}
+
+}
+void AddAfterNodeQ(LIST& list, NODE* new_ele, NODE* q)
+{
+	if (q != NULL && new_ele != NULL)
+	{
+		new_ele->link = q->link;
+		q->link = new_ele;
+		if (q == list.last)
+		{
+			list.last = new_ele;
+		}
+	}
+}
+NODE* Searching(LIST& list, int x) {
+	NODE* p;
+	p = list.first;
+	while (p!=NULL&&p->data!=x)
+	{
+		p = p->link;
+	}
+	return p;
+}
+void AddXAfterValue(LIST& list, int value, int x)
+{
+	NODE* new_ele = GetNode(x);
+	NODE* q = Searching(list, value);
+	if (q != NULL && new_ele != NULL)
+	{
+		AddAfterNodeQ(list, new_ele, q);
+	}
+	else {
+		cout << "ko them duoc";
+	}
+}
 //Phương thức thực hiện tác vụ thêm một giá trị data (sô nguyên) vào trong danh sách hiện có.
 //Thao tác này được thực hiện như sau:
 //Từ giá trị data được truyền từ tham số. Ta gọi hàm GetNode(data) để tạo một cấu trúc NODE cho danh sách liên kết đơn.
@@ -110,23 +160,192 @@ void PrintList(LIST list)
 	}
 }
 //------------------------------Buổi học ngày 23-10-2021------------------------------
+// tích hợp menu chọn chương trình vào trong bài.
 //Thực hiện các thao tác sau:
 //1. In toàn bộ danh sách
 //2. In danh sách số chẵn trong danh sách
+void PrintEvenNumber(LIST list)
+{
+	NODE* p;
+	p = list.first;
+	while (p != NULL)
+	{
+		if (p->data % 2 == 0)
+			cout << p->data;
+		//tang p sang pt tiep theo
+		p = p->link;
+	}
+}
+bool isPrime(int n)
+{
+	// Neu n < 2 thi khong phai la SNT
+	if (n < 2) {
+		return false;
+	}
+
+	for (int i = 2; i < (n - 1); i++) {
+		if (n % i == 0) {
+			return false;
+		}
+	}
+
+	return true;
+}
+ 
 //3. In danh sách số lẻ trong danh sách.
+
 //4. In danh sách các số nguyên tố có trong danh sách.
+void PrintPrime(LIST list)
+{
+	NODE* p;
+	p = list.first;
+	while (p != NULL)
+	{
+		if (isPrime(p->data))
+			cout << p->data;
+		//tang p sang pt tiep theo
+		p = p->link;
+	}
+}
 //5. Tìm kiếm giá trị x nhập từ bàn phím
+//o tren
 //6. Tìm kiếm tất cả các giá trị x có trong danh sách. đếm xem có bao nhiêu giá trị x trong danh sách.
+// Bài tập nộp về nhà
+// 
+// 7.0. Xoa mot nut sau node q
+void RemoveAfterQ(LIST& list, NODE* q)
+{
+	if (q != NULL && q->link != NULL)
+	{
+		NODE* p = q->link;
+		q->link = p->link;
+		if (p->link == NULL)//node cuoi
+			list.last = q;
+		free(p);
+	}
+}
+//7.1 Xoa mot nut sau nut co gia tri x
+void RemoveAfterxValue(LIST& list, int x)
+{
+	NODE* q = Searching(list, x);
+	if (q != NULL)
+		RemoveAfterQ(list, q);
+	else
+		cout << "Not found Q";
+}
 //7. Xoá giá trị x khỏi danh sách.
+void RemoveValuex(LIST& list, int x)
+{
+	NODE* p = list.first;
+	NODE* q = p;
+	while (p!=NULL)
+	{
+		if (p->data == x)
+		{
+			if (p == list.first)
+			{
+				RemoveFirst(list);
+				break;
+			}
+			else//khong phai phan tu dau
+			{
+				RemoveAfterQ(list, q);
+					break;
+			}
+		}
+		//phan tang
+		q = p;
+		p = p->link;
+	}
+}
 //8. Xoá tất cả các giá trị x khỏi danh sách.
 //9. xoá phần tử đầu danh sách.
-//10 xoá toàn bộ danh sách.
-void main()
+void RemoveFirst(LIST& list)
 {
-	LIST list;
-	CreateList(list);
-	PrintList(list);
-	system("pause");
+	if (list.first != NULL)
+	{
+		NODE* p = list.first;
+	
+		list.first = p->link;
+		if (list.first == NULL)
+			list.last = NULL;
+		free(p);
+	}
+}
+//10 xoá toàn bộ danh sách.
+void removeAll(LIST& list)
+{
+	NODE* p;
+	p = list.first;
+	while (p != NULL)
+	{
+		RemoveFirst(list);
+		//tang p sang pt tiep theo
+		p = p->link;
+	}
+}
+int menu()
+{
+	system("cls");
+	cout << endl;
+	cout << setfill(' ');
+	cout << setw(55) << "-------- MENU -------" << endl;
+
+	cout << setw(55) << "| 1. Create List     |" << endl;
+	cout << setw(55) << "| 2. Print List     |" << endl;
+	cout << setw(55) << "| 3. Add x after value         |" << endl;
+	cout << setw(55) << "| 4.Remove first         |" << endl;
+	cout << setw(55) << "| 5.Exit         |" << endl;
+	cout << setw(55) << "---------------------" << endl;
+	int option;
+	cout << "Select function: ";
+	cin >> option;
+	return option;
+
+}
+void main()
+{	
+	
+	while (true)
+	{
+		LIST list;
+		int option;
+		option = menu();
+		switch (option)
+		{
+		case 1:
+			cout << setfill('-');
+			cout << setw(55) << "-" << endl;
+			cout << "Add Node:" << endl;
+			CreateList(list);
+			PrintList(list);
+			system("pause");
+			break;
+		case 2:
+			cout << setfill('-');
+			cout << setw(55) << "-" << endl;
+			cout << "Print List" << endl;
+			PrintList(list);
+			system("pause");
+			break;
+		case 3:
+			cout << "Add x After value:"<<endl;
+			int x, value;
+			cout << "input x:"; cin >> x;
+			cout << "input value:"; cin >> value;
+			AddXAfterValue(list, value, x);
+			break;
+		case 4:
+			RemoveFirst(list);
+			PrintList(list);
+			system("pause");
+			break;
+		default:
+
+			return;
+		}
+	}
+
 }
 
 //Thực hiện gọi chức năng chương trình bằng Menu.
