@@ -129,4 +129,4 @@ void main()
 	system("pause");
 }
 
-//Thực hiện bài tập này thêm
+//Thực hiện gọi chức năng chương trình bằng Menu.
