@@ -273,7 +273,7 @@ void RemoveFirst(LIST& list)
 	}
 }
 //10 xoá toàn bộ danh sách.
-void removeAll(LIST& list)
+void RemoveAll(LIST& list)
 {
 	NODE* p;
 	p = list.first;
