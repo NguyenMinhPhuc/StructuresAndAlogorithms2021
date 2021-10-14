@@ -7,7 +7,7 @@ typedef struct dnode {
 	dnode* pre;
 	dnode* next;
 }DNODE;
-
+//Them commemt
 typedef DNODE* ptrDnode;
 
 //khai baos cau truc dLIST
