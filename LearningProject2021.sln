@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "project_QuanLySinhVien", "C
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project_QuanLySanPham", "Chapter02\Project_QuanLySanPham\Project_QuanLySanPham.vcxproj", "{75841823-82CC-458F-86BA-CD77CD932094}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pro_DanhSachDoi_Number", "Chapter02\Pro_DanhSachDoi_Number\Pro_DanhSachDoi_Number.vcxproj", "{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -60,6 +62,14 @@ Global
 		{75841823-82CC-458F-86BA-CD77CD932094}.Release|x64.Build.0 = Release|x64
 		{75841823-82CC-458F-86BA-CD77CD932094}.Release|x86.ActiveCfg = Release|Win32
 		{75841823-82CC-458F-86BA-CD77CD932094}.Release|x86.Build.0 = Release|Win32
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Debug|x64.ActiveCfg = Debug|x64
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Debug|x64.Build.0 = Debug|x64
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Debug|x86.ActiveCfg = Debug|Win32
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Debug|x86.Build.0 = Debug|Win32
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Release|x64.ActiveCfg = Release|x64
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Release|x64.Build.0 = Release|x64
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Release|x86.ActiveCfg = Release|Win32
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +79,7 @@ Global
 		{081B18D1-0FC8-49E4-933A-ED3F29EB611D} = {BAACDEB3-8953-40F7-920E-03E74B221BE6}
 		{B13320B8-28C9-4D90-817A-C961F7FA86EB} = {BAACDEB3-8953-40F7-920E-03E74B221BE6}
 		{75841823-82CC-458F-86BA-CD77CD932094} = {BAACDEB3-8953-40F7-920E-03E74B221BE6}
+		{824D58E5-FA37-4548-BA1A-2FAF8C99D1ED} = {BAACDEB3-8953-40F7-920E-03E74B221BE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BECD288-4C31-4FD2-96B5-6AB9F852CA92}
