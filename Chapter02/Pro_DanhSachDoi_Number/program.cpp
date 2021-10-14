@@ -188,14 +188,17 @@ int RemoveFirstGetData(DLIST& dl)
 	if (dl.head != NULL) {
 		p = dl.head;
 		dl.head = dl.head->next;
-		dl.head->pre = NULL;
+		
 		data = p->data;
-		delete p;
-
+		
 		if (dl.head == NULL)
 		{
 			dl.tail = NULL;
 		}
+		else { 
+			dl.head->pre = NULL; 
+		}
+		delete p;
 	}
 	return data;
 }
@@ -204,18 +207,87 @@ void RemoveLast(DLIST& dl)
 {
 	DNODE* p;
 	if (dl.tail != NULL) {
-		p = dl.tail;
-		dl.tail = dl.head->pre;
-		dl.head->next = NULL;
-
-		delete p;
+		p = dl.tail;//1
+		dl.tail = dl.tail->pre;//2
 
 		if (dl.tail == NULL)
 		{
-			dl.head = NULL;
+			dl.head = NULL;//danh sach rong
+		}
+		else {
+			dl.head->next = NULL;//3
+		}delete p;
+	}
+}
+void RemoveAfterQ(DLIST& dl, DNODE* q)
+{
+	DNODE* p;
+	if (q != NULL){
+		p = q->next;
+		if (p != NULL){
+			q->next = p->next;
+			if (p == dl.tail)
+				dl.tail = q;
+			else {
+				p->next->pre = q;
+			}
+			delete p;
+		}
+	}
+
+}
+void RemoveBeforQ(DLIST& dl, DNODE* q)
+{
+	if (q != NULL)
+	{
+		DNODE* p = q->pre;
+		if (p != NULL)
+		{
+			q->pre = p->pre;
+			if (p == dl.head)
+				dl.head = q;
+			else
+				p->pre->next = q;
+			delete p;
+			//free(p)
 		}
 	}
 }
+void RemoveValueX(DLIST& dl, int valueX)
+{
+	DNODE* q = SearchingValue(dl,valueX);
+	if (q != NULL)
+	{
+		if (q == dl.head)
+		{
+			RemoveFirst(dl);
+		}
+		else if (q == dl.tail)
+		{
+			RemoveLast(dl);
+		}
+		else {
+			RemoveAfterQ(dl, q);
+		}
+	}
+	else
+		cout << "khong co gia tri: " << valueX << " can xoa ";
+}
+void RemoveAll(DLIST& dl)
+{
+	DNODE* p;
+	p = dl.head;
+	while (p!=NULL)
+	{
+		RemoveFirst(dl);
+		p = p->next;
+	}
+}
+//Remove theo vi tri cua node tren danh sachs.
+//list.remove(object);
+
+//Bai tap ve nha .
+//list.removeAt(int index)
 void main()
 {
 	DLIST dl;
