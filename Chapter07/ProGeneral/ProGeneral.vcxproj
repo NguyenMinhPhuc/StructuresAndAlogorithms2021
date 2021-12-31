@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5c0fdc23-d31a-4205-b3ef-140844ad9a83}</ProjectGuid>
-    <RootNamespace>HashtableProject</RootNamespace>
+    <ProjectGuid>{caa85b26-e7a0-43df-9b40-2e0c5828ae72}</ProjectGuid>
+    <RootNamespace>ProGeneral</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -140,9 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Program.cpp" />
+    <ClCompile Include="TimTapConKPhanThu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

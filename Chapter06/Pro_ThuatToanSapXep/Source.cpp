@@ -14,7 +14,7 @@ void SelectionSort(int source[], int n)
 	for (int i = 0; i < n; i++)
 	{
 		min = i;
-		for (int j = i+1; j < n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
 			if (source[j] < source[min])
 			{
@@ -25,7 +25,7 @@ void SelectionSort(int source[], int n)
 		HoanVi(source[i], source[min]);
 	}
 }
-void printArray(int source[],int n)
+void printArray(int source[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -37,7 +37,7 @@ void InsertSort(int source[], int n)
 {
 	int pos;
 	int x;//Lưu giá trị đang xét
-	for (int i=1; i < n; i++)
+	for (int i = 1; i < n; i++)
 	{
 		x = source[i];
 		pos = i - 1;
@@ -60,7 +60,7 @@ void BinaryInsertSort(int source[], int n)
 		left = 1;
 		right = i - 1;
 		//Vi tri can tim la left
-		while (left <=right)
+		while (left <= right)
 		{
 			mid = (left + right) / 2;
 			if (x < source[mid])
@@ -69,7 +69,7 @@ void BinaryInsertSort(int source[], int n)
 				left = mid + 1;
 		}
 		//Dich chuyen cac gia tri
-		for (int j = i-1; j >=left; j--)
+		for (int j = i - 1; j >= left; j--)
 		{
 			source[j + 1] = source[j];
 		}
@@ -77,9 +77,9 @@ void BinaryInsertSort(int source[], int n)
 	}
 }
 void InterChangedSort(int source[], int n) {
-	for ( int i= 0; i < n-1; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
-		for (int j = i+1; j < n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
 			if (source[i] > source[j])
 				HoanVi(source[i], source[j]);
@@ -91,10 +91,10 @@ void BubleSort(int source[], int n)
 {
 	for (int i = 0; i < n - 1; i++)
 	{
-		for (int j = n-1; j >i; j--)
+		for (int j = n - 1; j > i; j--)
 		{
-			if (source[j] < source[j-1])
-				HoanVi(source[j], source[j-1]);
+			if (source[j] < source[j - 1])
+				HoanVi(source[j], source[j - 1]);
 		}
 	}
 }
@@ -125,7 +125,7 @@ void shift(int source[], int left, int right)
 	}
 }
 //Chinh heap ban dau
-void CreateHeap(int source[], int n){
+void CreateHeap(int source[], int n) {
 	int i;
 	i = n / 2;
 	while (i > 0)
@@ -147,55 +147,92 @@ void HeapSort(int source[], int n) {
 		shift(source, 1, right);
 	}
 }
-void merge(int source[], int left, int mid, int right)
+void Merge(int source[], int left, int mid, int right)
 {
-	int i, j, k;
-	int c[50];
+	int i, j, k, C[50];
 	i = left;
-	j = mid + 1;
 	k = left;
-	while (i<=mid&&j<=right) {
+	j = mid + 1;
+	while (i <= mid && j <= right)
+	{
 		if (source[i] < source[j])
 		{
-			c[k] = source[i];
+			C[k] = source[i];
 			k++;
 			i++;
 		}
-		else {
-			c[k] = source[j];
+		else
+		{
+			C[k] = source[j];
 			k++;
 			j++;
 		}
+
 	}
 	while (i <= mid)
 	{
-		c[k] = source[i];
-		k++; i++;
+		C[k] = source[i];
+		k++;
+		i++;
 	}
 	while (j <= right)
 	{
-		c[k] = source[j];
-		k++; j++;
+		C[k] = source[j];
+		k++;
+		j++;
 	}
-	for (int l =left; l < right; l++)
+	for (int i = left; i < right; i++)
 	{
-		source[l] = c[l];
+		source[i] = C[i];
 	}
 }
-void MergeSort(int source[], int left, int right) {
+
+void MergeSort(int source[], int left, int right)
+{
 	int mid;
 	if (left < right)
 	{
 		mid = (left + right) / 2;
-		MergeSort(source, left , mid);
-		MergeSort(source, mid + 1, right);
-		
 
-		merge(source, left, mid, right);
+		MergeSort(source, left, mid);
+		MergeSort(source, mid + 1, right);
+
+		Merge(source, left, mid, right);
 	}
 }
-void main(){
-	int source[] = { 1,4,2,6,8,3,9,7,10 };
+
+void QuickSort(int source[], int left, int right)
+{
+	int i, j, x;
+	x = source[(left + right) / 2];
+	i = left;
+	j = right;
+	do {
+		while (source[i] < x)
+		{
+			i++;
+		}
+		while (source[j] > x)
+		{
+			j--;
+		}
+		if (i <= j) {
+			HoanVi(source[i], source[j]);
+			i++;
+			j--;
+		}
+	} while (i < j);
+	if (left < j)
+	{
+		QuickSort(source, left, j);
+	}
+	if (i < right)
+	{
+		QuickSort(source, i, right);
+	}
+}
+void main() {
+	int source[] = { 1,12,4,6,8,3,9,7,10 };
 	int n = 9;
 
 	printArray(source, n);
@@ -204,7 +241,7 @@ void main(){
 	cout << "heap: " << endl;
 	printArray(source, n);*/
 	//SelectionSort(source, n);
-	MergeSort(source,0,n-1);
+	QuickSort(source, 0, n - 1);
 	cout << endl;
 
 	printArray(source, n);
